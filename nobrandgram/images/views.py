@@ -27,3 +27,9 @@ class Feed(APIView):
         serializer = serializers.ImageSerializer(sorted_list, many=True)
 
         return Response(serializer.data)
+
+class LikeImage(APIView):
+
+    def get(self, request, id, format=None):
+
+        return Response(status=200)
