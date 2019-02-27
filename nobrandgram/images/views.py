@@ -22,6 +22,12 @@ class Feed(APIView):
 
                 image_list.append(image)
 
+        my_images = user.images.all()[:2]
+
+        for image in my_images:
+
+            image_list.append(image)
+
         sorted_list = sorted(image_list, key=lambda x: x.created_at, reverse=True)
 
         serializer = serializers.ImageSerializer(sorted_list, many=True)
@@ -140,3 +146,32 @@ class Search(APIView):
         else:
 
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class ModerateComments(APIView):
+
+    def delete(self, request, image_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment_to_delete = models.Comment.objects.get(id=comment_id, image__id=image_id, image__creator=user)
+            comment_to_delete.delete()
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ImageDetail(APIView):
+
+    def get(self, request, image_id, format=None):
+
+        user = request.user
+
+        try:
+            image = models.Image.objects.get(id=image_id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.ImageSerializer(image)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
