@@ -17,6 +17,7 @@ urlpatterns = [
     # User management
     path("users/", include("nobrandgram.users.urls", namespace="users"),),
     path("images/", include("nobrandgram.images.urls", namespace="images"),),
+    path("notifications/", include("nobrandgram.notifications.urls", namespace="notifications"),),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(

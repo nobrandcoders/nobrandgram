@@ -79,7 +79,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'nobrandgram.users.apps.UsersAppConfig',
     # Your stuff: custom apps go here
-    'nobrandgram.images.apps.ImagesConfig',
+    'nobrandgram.images.apps.ImagesConfig', # images app
+    'nobrandgram.notifications.apps.NotificationsConfig',   # notifications app
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
