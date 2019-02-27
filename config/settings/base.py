@@ -68,6 +68,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
+    'taggit', # Tags for the photos
 ]
 THIRD_PARTY_APPS = [
     'allauth',
@@ -256,3 +257,4 @@ SOCIALACCOUNT_ADAPTER = 'nobrandgram.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True
